@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulaire avec Coordonnées GPS</title>
+</head>
+<body>
+
+<h2>Formulaire avec Coordonnées GPS</h2>
+
+<form id="gpsForm">
+  <label for="latitude">Latitude:</label>
+  <input type="text" id="latitude" name="latitude" readonly>
+
+  <label for="longitude">Longitude:</label>
+  <input type="text" id="longitude" name="longitude" readonly>
+
+  <button type="button" onclick="getLocation()">Obtenir Coordonnées GPS</button>
+</form>
+
+<script>
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      alert("La géolocalisation n'est pas prise en charge par votre navigateur.");
+    }
+  }
+
+  function showPosition(position) {
+    const latitudeInput = document.getElementById("latitude");
+    const longitudeInput = document.getElementById("longitude");
+
+    latitudeInput.value = position.coords.latitude;
+    longitudeInput.value = position.coords.longitude;
+  }
+</script>
+
+</body>
+</html>
