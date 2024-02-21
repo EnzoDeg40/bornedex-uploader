@@ -45,3 +45,22 @@ map.getView().on('change:center', function (event) {
     latitudeInput.value = lonLat[1];
     longitudeInput.value = lonLat[0];
 });
+
+function previewImage() {
+    var preview = document.getElementById('image-preview');
+    var fileInput = document.getElementById('image');
+    var file = fileInput.files[0];
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+        preview.src = e.target.result;
+        preview.style.display = 'block';
+    };
+
+    if (file) {
+        reader.readAsDataURL(file);
+    } else {
+        preview.src = '#';
+        preview.style.display = 'none';
+    }
+}
