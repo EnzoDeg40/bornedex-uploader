@@ -1,4 +1,20 @@
-#map {
+#map, #cursor {
     width: 500px;
     height: 500px;
+}
+
+#preview {
+    position: relative;
+}
+
+#cursor {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+}
+
+#cursor img {
+    position: absolute;
+    top: 200px;
+    left: 200px;
 }
