@@ -1,46 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire avec Coordonnées GPS</title>
-    <script src="https://cdn.jsdelivr.net/npm/ol@v8.2.0/dist/ol.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css">
-    <link rel="stylesheet" href="/static/style.css">
+    <title>Bornedex Uploader</title>
 </head>
-
 <body>
+    <h1>Bornedex Uploader</h1>
+    <h2>Partagez vos repères de nivellement</h2>
 
-    <h2>Formulaire avec Coordonnées GPS</h2>
+    <a href="/home">Partager un repère</a>
 
-    <form id="gpsForm">
-        <label for="latitude">Latitude:</label>
-        <input type="text" id="latitude" name="latitude" readonly>
-
-        <label for="longitude">Longitude:</label>
-        <input type="text" id="longitude" name="longitude" readonly>
-
-        <button type="button" onclick="getLocation()">Obtenir Coordonnées GPS</button>
-        
-        <br>
-
-        <label for="name">Addresse de la borne:</label>
-        <input type="text" id="name" name="name">
-
-        <input type="file" id="image" name="image" onchange="previewImage()">
-        <img id="image-preview" src="#" alt="Aperçu de l'image" style="display: none;">
-
-    </form>
-
-    <div id="preview">
-        <div id="cursor">
-            <img src="/static/cursor.png" alt="">
-        </div>
-        <div id="map"></div>
-    </div>
-
-    <script src="/static/script.js"></script>
+    <a href="https://discord.gg/wpNXd4tDnk">Discord</a>
+    <a href="https://github.com/EnzoDeg40/bornedex-uploader">GitHub</a>
 </body>
-
 </html>
