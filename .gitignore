@@ -153,3 +153,4 @@ cython_debug/
 
 # Bornedex-Uploader
 config.py
+uploads/
