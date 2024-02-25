@@ -76,11 +76,12 @@ document.getElementById('gpsForm').addEventListener('submit', function (e) {
         .then(response => response.json())
         .then(data => {
             if (data.error) {
-                alert(data.error);
+                document.getElementById('message').innerText = data.error;
             } else {
-                alert(data.success);
-                this.reset();
-                document.getElementById('image-preview').style.display = 'none';
+                document.getElementById('message').innerText = data.success;
+                // alert(data.success);
+                // this.reset();
+                // document.getElementById('image-preview').style.display = 'none';
             }
         });
 });

@@ -1,32 +1,26 @@
 import sqlite3
 import os
 
-conn = sqlite3.connect('sqlite.db')
+conn = sqlite3.connect('sqlite.db', check_same_thread=False) # TODO: remove check_same_thread
 cursor = conn.cursor()
-
-cursor.execute('''
-    CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT,
-        email TEXT,
-        password TEXT,
-        discord_id TEXT NOT NULL UNIQUE,
-        discord_username TEXT
-    );
-''')
 
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS bornes (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT
-        x REAL NOT NULL,
-        y REAL NOT NULL,
-        alt INTEGER,
+        date TEXT DEFAULT CURRENT_TIMESTAMP,
+        name TEXT,
+        x TEXT,
+        y TEXT,
+        alt TEXT,
         city TEXT,
         wiki TEXT,
-        user_id INTEGER,
+        description TEXT,
+        discord_userid TEXT,
+        discord_username TEXT,
+        discord_email TEXT,
+        discord_avatar TEXT,
         is_valid BOOLEAN DEFAULT 0
-    );
+    )
 ''')
 
 conn.commit()

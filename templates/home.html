@@ -14,12 +14,14 @@
 
     <h2>Formulaire avec Coordonnées GPS</h2>
 
-    <form id="gpsForm">
-        <label for="latitude">Latitude:</label>
-        <input type="text" id="latitude" name="latitude" readonly>
+    <div id="message"></div>
 
-        <label for="longitude">Longitude:</label>
-        <input type="text" id="longitude" name="longitude" readonly>
+    <form id="gpsForm">
+        <label for="lat">Latitude:</label>
+        <input type="text" id="latitude" name="lat" readonly>
+
+        <label for="lon">Longitude:</label>
+        <input type="text" id="longitude" name="lon" readonly>
 
         <button type="button" onclick="getLocation()">Obtenir Coordonnées GPS</button>
         
