@@ -64,3 +64,23 @@ function previewImage() {
         preview.style.display = 'none';
     }
 }
+
+
+document.getElementById('gpsForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var formData = new FormData(this);
+    fetch('/upload/', {
+        method: 'POST',
+        body: formData
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error);
+            } else {
+                alert(data.success);
+                this.reset();
+                document.getElementById('image-preview').style.display = 'none';
+            }
+        });
+});
