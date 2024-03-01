@@ -3,6 +3,7 @@ from flask import Flask, redirect, url_for, render_template, request, jsonify
 from flask_discord import DiscordOAuth2Session, requires_authorization, Unauthorized
 import config as config
 import sql as sql
+import format as format
 
 app = Flask(__name__, template_folder='templates', static_folder='static', static_url_path='/static')
 
@@ -22,7 +23,9 @@ def index():
 @app.route("/home/")
 @requires_authorization
 def home():
-    return render_template("home.html")
+    user = discord.fetch_user()
+    bornes = db.get_user_bornes(user.id)
+    return render_template("home.html", user=user, bornes=bornes, format=format)
 
 @app.route("/upload/", methods=["POST"])
 @requires_authorization
@@ -95,4 +98,4 @@ def redirect_unauthorized(e):
 #     </html>"""
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port=5000)

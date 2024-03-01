@@ -18,7 +18,7 @@ class borne:
 
 class db:
     def __init__(self):
-        self.conn = sqlite3.connect('sqlite.db')
+        self.conn = sqlite3.connect('sqlite.db', check_same_thread=False)
         self.cursor = self.conn.cursor()
         
     def __enter__(self):
@@ -35,3 +35,13 @@ class db:
         self.conn.commit()
         return self.cursor.lastrowid
     
+    def get_user_bornes(self, discord_userid):
+        query = '''
+            SELECT id, date, name, x, y, alt, city, wiki, description, is_valid
+            FROM bornes
+            WHERE discord_userid = ?
+        '''
+        self.cursor.execute(query, (discord_userid,))
+        
+        bornes = self.cursor.fetchall()
+        return bornes

@@ -8,41 +8,76 @@
     <script src="https://cdn.jsdelivr.net/npm/ol@v8.2.0/dist/ol.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css">
     <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
+
+    <div class="user">
+        <img src="{{ user.avatar_url }}" alt="Avatar" width="50" height="50">
+        <span>Connecté en tant que {{ user.username }}</span>
+        <a href="/logout">Se déconnecter</a>
+    </div>
 
     <h2>Formulaire avec Coordonnées GPS</h2>
 
     <div id="message"></div>
 
     <form id="gpsForm">
-        <label for="lat">Latitude:</label>
-        <input type="text" id="latitude" name="lat" readonly>
 
-        <label for="lon">Longitude:</label>
-        <input type="text" id="longitude" name="lon" readonly>
+        <h3>Infomation</h3>
 
-        <button type="button" onclick="getLocation()">Obtenir Coordonnées GPS</button>
-        
-        <br>
+        <div class="element">
+            <label for="name">Nom de la la borne</label>
+            <input type="text" id="name" name="name">
+        </div>
 
-        <label for="name">Addresse de la borne:</label>
-        <input type="text" id="name" name="name">
+        <div class="element">
+            <label for="description">Ville</label>
+            <input type="city" id="city" name="city">
+        </div>
 
-        <input type="file" id="image" name="image" onchange="previewImage()">
-        <img id="image-preview" src="#" alt="Aperçu de l'image" style="display: none;">
-        
+        <div class="element">
+            <label for="image">Image<span>*</span></label>
+            <input type="file" id="image" name="image" onchange="previewImage()">
+            <img id="image-preview" src="#" alt="Aperçu de l'image" style="display: none;">
+        </div>
+
+        <h3>Position</h3>
+
+        <div id="map"></div>
+                <div class="element">
+            <label for="lat">Latitude<span>*</span></label>
+            <input type="text" id="latitude" name="lat" readonly>
+        </div>
+
+        <div class="element">
+            <label for="lon">Longitude<span>*</span></label>
+            <input type="text" id="longitude" name="lon" readonly>
+        </div>
+
+        <div class="element">
+            <button type="button" onclick="getLocation()">Remplir les coordonnées</button>
+        </div>     
+
         <button type="submit">Envoyer</button>
-
     </form>
 
-    <div id="preview">
-        <div id="cursor">
-            <img src="/static/cursor.png" alt="">
-        </div>
-        <div id="map"></div>
-    </div>
+    <h2>Bornes envoyées</h2>
+    <table class="uploads">
+        {% for borne in bornes %}
+            <tr>
+                <td class="id">{{ borne[0] }}</td>
+                <td>{{ borne[2] }}</td>
+                <td class="date">{{ format.relative_date(borne[1]) }}</td>
+                <td class="map">{{ format.map_link(borne[3], borne[4]) | safe }}</td>
+                <td class="wiki">{{ format.wiki_link(borne[7]) | safe }}</td>
+                <td class="valid">{{ format.is_valid_borne(borne[9]) }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 
     <script src="/static/script.js"></script>
 </body>

@@ -1,0 +1,66 @@
+$subtext: 14px;
+$text: 16px;
+
+body {
+    font-family: "Source Sans 3", sans-serif;
+}
+
+form {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    h3 {
+        margin-bottom: 0;
+    }
+
+    label {
+        font-size: $subtext;
+        padding-bottom: 6px;
+        display: block;
+
+        span {
+            color: #FF2717;
+        }
+    }
+
+    input {
+        width: calc(100% - 20px);
+        border: none;
+        border-radius: 10px;
+        padding: 12px 10px;
+        font-size: 16px;
+        background-color: #EAEAEB;
+
+        &:focus {
+            outline: 2px solid #98c6d1;
+        }
+    }
+
+    button {
+        background-color: #00739b;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 12px 10px;
+        font-size: 16px;
+    }
+
+    #map {
+        width: 100%;
+        height: 500px;
+
+        canvas {
+            border-radius: 10px;
+        }
+    }
+}
+
+#image-preview
+{
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 15px;
+}
