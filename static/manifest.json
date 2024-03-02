@@ -1,0 +1,17 @@
+{
+    "name": "Bornedex Uploader",
+    "short_name": "Bornedex",
+    "description": "Paratage de repères de nivellement",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#000000",
+    "icons": [
+      {
+        "src": "/static/icon.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      }
+    ]
+  }
+  

@@ -4,13 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire avec Coordonnées GPS</title>
+    <title>Bornedex</title>
     <script src="https://cdn.jsdelivr.net/npm/ol@v8.2.0/dist/ol.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css">
     <link rel="stylesheet" href="/static/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/static/icon.png" />
+    <link rel="manifest" href="/static/manifest.json">
 </head>
 
 <body>
@@ -21,7 +23,7 @@
         <a href="/logout">Se déconnecter</a>
     </div>
 
-    <h2>Formulaire avec Coordonnées GPS</h2>
+    <h2>Ajout d'une borne</h2>
 
     <div id="message"></div>
 
@@ -31,36 +33,52 @@
 
         <div class="element">
             <label for="name">Nom de la la borne</label>
-            <input type="text" id="name" name="name">
+            <input type="text" id="name" name="name" autocomplete="name">
         </div>
 
         <div class="element">
-            <label for="description">Ville</label>
-            <input type="city" id="city" name="city">
+            <label for="city">Ville</label>
+            <input type="city" id="city" name="city" autocomplete="city">
         </div>
 
-        <div class="element">
+        <div class="element element-image">
             <label for="image">Image<span>*</span></label>
             <input type="file" id="image" name="image" onchange="previewImage()">
             <img id="image-preview" src="#" alt="Aperçu de l'image" style="display: none;">
         </div>
 
-        <h3>Position</h3>
+        <h3>Emplacement</h3>
 
-        <div id="map"></div>
-                <div class="element">
+        <div class="element element-map">
+            <div class="image"><img src="/static/cursor.png" alt=""></div>
+            <div id="map"></div>
+        </div>
+            
+        <div class="element">
             <label for="lat">Latitude<span>*</span></label>
-            <input type="text" id="latitude" name="lat" readonly>
+            <input type="number" id="lat" name="lat" autocomplete="off">
         </div>
 
         <div class="element">
             <label for="lon">Longitude<span>*</span></label>
-            <input type="text" id="longitude" name="lon" readonly>
+            <input type="number" id="lon" name="lon" autocomplete="off">
         </div>
 
         <div class="element">
             <button type="button" onclick="getLocation()">Remplir les coordonnées</button>
         </div>     
+
+        <h3>Annexe</h3>
+        
+        <div class="element">
+            <label for="alt">Altitude</label>
+            <input type="number" id="alt" name="alt" autocomplete="off">
+        </div>
+
+        <div class="element">
+            <label for="wiki">Lien Wikipedia</label>
+            <input type="text" id="wiki" name="wiki" autocomplete="off">
+        </div>
 
         <button type="submit">Envoyer</button>
     </form>
@@ -69,17 +87,32 @@
     <table class="uploads">
         {% for borne in bornes %}
             <tr>
-                <td class="id">{{ borne[0] }}</td>
-                <td>{{ borne[2] }}</td>
-                <td class="date">{{ format.relative_date(borne[1]) }}</td>
-                <td class="map">{{ format.map_link(borne[3], borne[4]) | safe }}</td>
-                <td class="wiki">{{ format.wiki_link(borne[7]) | safe }}</td>
-                <td class="valid">{{ format.is_valid_borne(borne[9]) }}</td>
+                <td class="id">{{ borne["id"] }}</td>
+                <td>{{ borne["name"] }}</td>
+                <td>{{ borne["city"] }}</td>
+                <td class="date">{{ format.relative_date(borne["date"]) }}</td>
+                <td class="map">{{ format.map_link(borne["x"], borne["y"]) | safe }}</td>
+                <td class="wiki">{{ format.wiki_link(borne["wiki"]) | safe }}</td>
+                <td class="valid">{{ format.is_valid_borne(borne["is_valid"]) }}</td>
             </tr>
         {% endfor %}
     </table>
 
     <script src="/static/script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/static/service-worker.js')
+                .then(function (registration) {
+                    console.log('Service Worker registered successfully:', registration);
+                })
+                .catch(function (error) {
+                    console.log('Service Worker registration failed:', error);
+                });
+        }
+        else {
+            console.log('Service Worker is not supported.');
+        }
+    </script>
 </body>
 
 </html>

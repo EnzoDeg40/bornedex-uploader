@@ -36,12 +36,13 @@ class db:
         return self.cursor.lastrowid
     
     def get_user_bornes(self, discord_userid):
+        self.cursor.row_factory = sqlite3.Row
+        
         query = '''
             SELECT id, date, name, x, y, alt, city, wiki, description, is_valid
             FROM bornes
             WHERE discord_userid = ?
         '''
         self.cursor.execute(query, (discord_userid,))
-        
         bornes = self.cursor.fetchall()
         return bornes
