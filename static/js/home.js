@@ -116,3 +116,8 @@ document.getElementById('gpsForm').addEventListener('submit', function (e) {
             }
         });
 });
+
+
+// Cursor injector
+document.querySelector('.ol-overlaycontainer').innerHTML += '<div class="ol-target ol-unselectable ol-control" style="background-color: #00000000; top: calc(50% - 25px); left: calc(50% - 25px);"><img src="/static/cursor.png"></div>';
+
