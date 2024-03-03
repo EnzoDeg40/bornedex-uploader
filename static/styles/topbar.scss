@@ -1,0 +1,30 @@
+.topbar {
+    position: fixed;
+    z-index: 5;
+    background-color: #ffffff;
+    width: calc(100% - 40px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    justify-content: space-between;
+
+    .item-icon a {
+        display: flex;
+    }
+
+    a {
+        color: #000;
+        font-size: 30px;
+    }
+
+    .item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .avatar {
+        border-radius: 100%;
+    }
+}

@@ -6,33 +6,6 @@ body {
   margin: 0;
 }
 
-.topbar {
-  position: fixed;
-  z-index: 5;
-  background-color: #ffffff;
-  width: calc(100% - 40px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  display: flex;
-  align-items: center;
-  padding: 10px 20px;
-  justify-content: space-between;
-}
-.topbar .item-icon a {
-  display: flex;
-}
-.topbar a {
-  color: #000;
-  font-size: 30px;
-}
-.topbar .item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.topbar .avatar {
-  border-radius: 100%;
-}
-
 form {
   width: calc(100% - 20px);
   max-width: 500px;

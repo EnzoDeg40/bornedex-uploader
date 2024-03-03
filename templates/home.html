@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -8,6 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/ol@v8.2.0/dist/ol.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css">
     <link rel="stylesheet" href="/static/styles/home.css">
+    <link rel="stylesheet" href="/static/styles/topbar.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
@@ -16,13 +17,8 @@
 </head>
 
 <body>
-
-    <div class="user">
-        <img src="{{ user.avatar_url }}" alt="Avatar" width="50" height="50">
-        <span>Connecté en tant que {{ user.username }}</span>
-        <a href="/logout">Se déconnecter</a>
-    </div>
-
+    {% include "topbar.html" %}
+    
     <h2>Ajout d'une borne</h2>
 
     <div id="message"></div>
@@ -113,6 +109,8 @@
             console.log('Service Worker is not supported.');
         }
     </script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>
