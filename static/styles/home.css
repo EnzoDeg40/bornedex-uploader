@@ -1,9 +1,40 @@
 body {
   font-family: "Source Sans 3", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+
+.topbar {
+  position: fixed;
+  z-index: 5;
+  background-color: #ffffff;
+  width: calc(100% - 40px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  justify-content: space-between;
+}
+.topbar .item-icon a {
+  display: flex;
+}
+.topbar a {
+  color: #000;
+  font-size: 30px;
+}
+.topbar .item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.topbar .avatar {
+  border-radius: 100%;
 }
 
 form {
-  width: 100%;
+  width: calc(100% - 20px);
   max-width: 500px;
   display: flex;
   flex-direction: column;
@@ -31,13 +62,17 @@ form input {
 form input:focus {
   outline: 2px solid #98c6d1;
 }
-form button, form ::file-selector-button {
+form button,
+form ::file-selector-button {
   background-color: #00739b;
   color: white;
   border: none;
   border-radius: 10px;
-  padding: 12px 10px;
+  padding: 10px;
   font-size: 16px;
+}
+form ::file-selector-button {
+  border-radius: 6px;
 }
 form .element-map #map {
   width: 100%;
