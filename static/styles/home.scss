@@ -1,13 +1,7 @@
 $subtext: 14px;
 $text: 16px;
 
-body {
-    font-family: "Source Sans 3", sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-}
+
 
 form {
     width: calc(100% - 20px);

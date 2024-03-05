@@ -1,0 +1,36 @@
+@charset "UTF-8";
+/* Style du tableau */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+/* Style des cellules du tableau */
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+/* Style de l'en-tête du tableau */
+th {
+  background-color: #f2f2f2;
+}
+
+/* Style des lignes impaires du tableau */
+tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+/* Style des liens dans les cellules du tableau */
+a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}/*# sourceMappingURL=list.css.map */

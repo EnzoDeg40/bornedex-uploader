@@ -1,23 +1,36 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/css/ol.css" type="text/css">
-    <style>
-        .map {
-            height: 400px;
-            width: 100%;
-        }
-    </style>
-    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/build/ol.js"></script>
-    <title>Random Points From Code</title>
+    {% include "head.html" %}
+    <link rel="stylesheet" href="/static/styles/list.css">
 </head>
 
 <body>
-    <h2>300 Random Points From Code</h2>
-    <div id="map" class="map"></div>
-    <script src="/static/js/list.js"></script>
+    {% include "topbar.html" %}
+
+    <h2>Bornes envoyées</h2>
+
+    <table class="uploads">
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Ville</th>
+            <th>Date</th>
+            <th>Liens</th>
+            <th>Validité</th>
+        </tr>
+        {% for borne in bornes %}
+            <tr>
+                <td class="id">{{ borne["id"] }}</td>
+                <td>{{ borne["name"] }}</td>
+                <td>{{ borne["city"] }}</td>
+                <td class="date">{{ format.relative_date(borne["date"]) }}</td>
+                <td class="map wiki">{{ format.map_link(borne["x"], borne["y"]) | safe }}{{ format.wiki_link(borne["wiki"]) | safe }}</td>
+                <td class="valid">{{ format.is_valid_borne(borne["is_valid"]) }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 </body>
 
 </html>

@@ -27,6 +27,10 @@ def home():
     bornes = db.get_user_bornes(user.id)
     return render_template("home.html", user=user, bornes=bornes, format=format)
 
+@app.route("/map/")
+def map():
+    return render_template("map.html")
+
 @app.route("/upload/", methods=["POST"])
 @requires_authorization
 def upload():
@@ -66,6 +70,12 @@ def login():
     else:
         return discord.create_session()
 
+@app.route('/list/')
+def list():
+    user = discord.fetch_user()
+    bornes = db.get_user_bornes(user.id)
+    return render_template("list.html", user=user, bornes=bornes, format=format)
+
 @app.route('/logout/')
 def logout():
     discord.revoke()
@@ -98,4 +108,5 @@ def redirect_unauthorized(e):
 #     </html>"""
 
 if __name__ == "__main__":
+    # app.run(debug=True, host="0.0.0.0", port=5000, ssl_context='adhoc')
     app.run(debug=True, host="0.0.0.0", port=5000)

@@ -2,18 +2,8 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bornedex</title>
-    <script src="https://cdn.jsdelivr.net/npm/ol@v8.2.0/dist/ol.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css">
+    {% include "head.html" %}
     <link rel="stylesheet" href="/static/styles/home.css">
-    <link rel="stylesheet" href="/static/styles/topbar.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="/static/icon.png" />
-    <link rel="manifest" href="/static/manifest.json">
 </head>
 
 <body>
@@ -52,12 +42,12 @@
             
         <div class="element">
             <label for="lat">Latitude<span>*</span></label>
-            <input type="number" id="lat" name="lat" autocomplete="off">
+            <input type="text" id="lat" name="lat" autocomplete="off">
         </div>
 
         <div class="element">
             <label for="lon">Longitude<span>*</span></label>
-            <input type="number" id="lon" name="lon" autocomplete="off">
+            <input type="text" id="lon" name="lon" autocomplete="off">
         </div>
 
         <div class="element">
@@ -68,7 +58,7 @@
         
         <div class="element">
             <label for="alt">Altitude</label>
-            <input type="number" id="alt" name="alt" autocomplete="off">
+            <input type="text" id="alt" name="alt" autocomplete="off">
         </div>
 
         <div class="element">
@@ -78,21 +68,6 @@
 
         <button type="submit">Envoyer</button>
     </form>
-
-    <h2>Bornes envoyées</h2>
-    <table class="uploads">
-        {% for borne in bornes %}
-            <tr>
-                <td class="id">{{ borne["id"] }}</td>
-                <td>{{ borne["name"] }}</td>
-                <td>{{ borne["city"] }}</td>
-                <td class="date">{{ format.relative_date(borne["date"]) }}</td>
-                <td class="map">{{ format.map_link(borne["x"], borne["y"]) | safe }}</td>
-                <td class="wiki">{{ format.wiki_link(borne["wiki"]) | safe }}</td>
-                <td class="valid">{{ format.is_valid_borne(borne["is_valid"]) }}</td>
-            </tr>
-        {% endfor %}
-    </table>
 
     <script src="/static/js/home.js"></script>
     <script>
@@ -109,8 +84,6 @@
             console.log('Service Worker is not supported.');
         }
     </script>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>

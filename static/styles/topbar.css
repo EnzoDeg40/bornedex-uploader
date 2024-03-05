@@ -23,4 +23,8 @@
 }
 .topbar .avatar {
   border-radius: 100%;
+}
+
+.topbar-after {
+  height: 60px;
 }/*# sourceMappingURL=topbar.css.map */
