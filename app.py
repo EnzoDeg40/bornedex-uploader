@@ -31,6 +31,10 @@ def home():
 def map():
     return render_template("map.html")
 
+@app.route("/wiki/")
+def wiki():
+    return render_template("wiki.html")
+
 @app.route("/upload/", methods=["POST"])
 @requires_authorization
 def upload():
